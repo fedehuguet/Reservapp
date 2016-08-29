@@ -1,0 +1,205 @@
+<head>
+  <title>Reservapp</title>
+</head>
+
+<body>
+
+<div id="lef">
+  {{> loginButtons}}
+</div>
+
+<header>Reservapp</header>
+<div id="cen">
+  	{{> Home}}
+  	<div id="content">
+  		{{#if currentUser}}
+			<h2>Agregar Crucero</h2>
+	  	 	{{> cruisesadmin}}
+		{{else}}
+			{{> buscar}}
+			<h2>Cruceros disponibles</h2>
+	  		{{> cruises}}
+		{{/if}}
+  	</div>
+  	<center><img src="/Screen Shot 2016-04-26 at 10.46.42 AM.png" alt="Bancos" class="img-responsive" width="700"></center>
+
+</div>
+</body>
+
+<template name="Home">
+
+	<div class="c-wrapper" id="banner">
+
+		<div id="myCarousel" class="carousel slide">
+			
+			<ol class = "carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+
+			<div class = "carousel-inner">
+				<div class = "item active">
+					<img src="/Ciudad.jpg" alt="Ciudad" class="img-responsive">
+					<div class="carousel-caption">
+						<h3>Destino1</h3>
+						<p>Descripción básica destino 1</p>
+					</div>
+				</div>
+				<div class = "item">
+					<img src="/Granada.jpg" alt="Granada" class="img-responsive">
+					<div class="carousel-caption">
+						<h3>Destino2</h3>
+						<p>Descripción básica destino 2</p>
+					</div>
+				</div>
+				<div class = "item">
+					<img src="/Isla.jpeg" alt="Isla" class="img-responsive">
+					<div class="carousel-caption">
+						<h3>Crucero3</h3>
+						<p>Descripción básica destino 3</p>
+					</div>
+				</div>
+			</div>
+
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="icon-prev"></span>
+			</a>	
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="icon-next"></span>
+			</a>
+		</div>
+	</div>
+</template>
+
+
+<template name="cruisesadmin">
+  		<form class="add-cruise">
+  			<input type="datetime-local" name="fecha" placeholder="Partida"/>
+  			<input type="text" name="namecruise" placeholder="Nombre de crucero" />
+  			<input type="text" name="origin" placeholder="Origen" />
+  			<input type="text" name="destination" placeholder="Destino" />
+  			<input type="text" name="pasajeros" placeholder="Cant pasajeros" />
+  			<input type="text" name="precio" placeholder="Precio" />
+  			<input type="submit" value="Agregar" />
+ 		 </form>
+ 	<hr />
+  	<h3>Lista de cruceros</h3>
+	<table class="table table-bordered">
+ 		 	<thead>
+ 		 	<tr>
+ 		 		<th id="cen">Partida</th>
+ 		 		<th id="cen">Nombre de crucero</th>
+ 		 		<th id="cen">Origen</th>
+ 		 		<th id="cen">Destino</th>
+ 		 		<th id="cen"># Pasajeros</th>
+ 		 		<th id="cen">Precio</th>
+ 		 		<th id="cen">Eliminar</th>
+ 		 	</tr>
+ 		 	</thead>
+ 		 	<tbody>
+ 				 {{#each cruises}}
+ 				 	{{>HoverRowsAdmin}}
+				{{/each}}
+			</tbody>
+		</table>
+	<h3>Lista de pasajeros</h3>
+	<table class="table table-bordered">
+ 		 	<thead>
+ 		 	<tr>
+ 		 		<th id="cen">Nombre de pasajero</th>
+ 		 		<th id="cen">E-mail</th>
+ 		 		<th id="cen">Crucero reservado</th>
+ 		 		<th id="cen">Cuenta por pagar</th>
+ 		 		<th id="cen">Eliminar pasajero</th>
+ 		 	</tr>
+ 		 	</thead>
+ 		 	<tbody>
+ 				 {{#each pasajeros}}
+ 				 	{{>HoverRowsAdminPasajeros}}
+				{{/each}}
+			</tbody>
+		</table>
+</template>
+
+<template name="cruises">
+	<!--<label>Cantidad de reseservaciones</label>-->
+	<select class="form-control" id="cantidad">
+  			<option value="1">1 Boleto</option>
+  			<option value="2">2 Boletos</option>
+  			<option value="3">3 Boletos</option>
+  			<option value="4">4 Boletos</option>
+ 			 <option value="5">5 Boletos</option>
+ 			 <option value="6">6 Boletos</option>
+ 			 <option value="7">7 Boletos</option>
+ 			 <option value="8">8 Boletos</option>
+ 			 <option value="9">9 Boletos</option>
+ 			 <option value="10">10 Boletos</option>
+	</select>
+ 		 <table class="table table-bordered">
+ 		 	<thead>
+ 		 	<tr>
+ 		 		<th id="cen">Partida</th>
+ 		 		<th id="cen">Nombre de crucero</th>
+ 		 		<th id="cen">Origen</th>
+ 		 		<th id="cen">Destino</th>
+ 		 		<th id="cen"># Pasajeros</th>
+ 		 		<th id="cen">Precio</th>
+ 		 		<th id="cen">Reservar</th>
+ 		 	</tr>
+ 		 	</thead>
+ 		 	<tbody>
+ 				 {{#each cruises}}
+ 				 	{{>HoverRowsUser}}
+				{{/each}}
+			</tbody>
+		</table>
+</template>
+
+<template name="HoverRowsUser">
+	<tr>
+		<td>{{fecha}}</td>
+		<td>{{namecruise}}</td>
+		<td>{{origin}}</td>
+		<td>{{destination}}</td>
+		<td>{{pasajeros}}</td>
+		<td><label>$</label>{{precio}}</td>
+		<td>{{#if caben}}<a href="#" class="reserve-cruise"> Reservar</a>{{else}}<label>LLENO</label>{{/if}}</td>
+	</tr>
+</template>
+
+<template name="HoverRowsAdmin">
+	<tr>
+		<td>{{fecha}}</td>
+		<td>{{namecruise}}</td>
+		<td>{{origin}}</td>
+		<td>{{destination}}</td>
+		<td>{{pasajeros}}</td>
+		<td><label>$</label>{{precio}}</td>
+		<td><a href="#" class="delete-cruise"> Eliminar </a></td>
+	</tr>
+</template>
+
+<template name="HoverRowsAdminPasajeros">
+	<tr>
+		<td>{{nombre}}</td>
+		<td>{{mail}}</td>
+		<td>{{namecruise}}</td>
+		<td><label>$</label>{{preciototal}}</td>
+		<td><a href="#" class="delete-pasajero"> Eliminar Pasajero </a></td>
+	</tr>
+</template>
+
+<template name="buscar">
+	<!--<a href="#addForm" class="button">Buscar</a>-->
+	<form class="search-cruise">
+  			<label>Busqueda rapida</label><input type="text" name="nombre" placeholder="Nombre y Apellido" />
+  			<input type="text" name="mail" placeholder="E-mail" />
+  			<input type="text" name="namecruise" placeholder="Nombre de crucero" />
+  			<input type="text" name="origin" placeholder="Origen" />
+  			<input type="text" name="destination" placeholder="Destino" />
+  			<input type="submit" value="Buscar" />
+ 	</form>
+</template>
+

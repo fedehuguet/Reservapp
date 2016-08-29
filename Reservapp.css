@@ -1,0 +1,78 @@
+/* CSS declarations go here */
+div.c-wrapper{
+    width: 100%; /* for example */
+    margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+width: 100%; /* use this, or not */
+margin: auto;
+}
+
+#lef{
+	text-align: left;
+	background: #515161;
+}
+
+#cen{
+	text-align: center;
+	color: #515161; 
+	background: #EEF0F7;
+}
+
+header{
+	color: #fff; 
+	font-family: 'Helvetica Neue', sans-serif; 
+	font-size: 5vh; 
+	font-weight: bold; 
+	letter-spacing: .2vh; 
+	line-height: 1; 
+	text-indent: 10vw;
+	text-transform: uppercase; 
+	height: 5vh;
+	background: #515161;
+	width: 100%;
+	z-index: 10;
+	position: fixed;
+}
+
+#banner{
+	width: 100%;
+	height: 500px;
+	position: center;
+	top: 100px;
+}
+
+#content: {
+	width: 100%;
+	height: 1500px;
+	position: relative;
+	top: 500px;
+	background: #E4F0F7;
+}
+/*.button {
+    display: block;
+    width: 90px;
+    height: 40px;
+    background: #4E9CAF;
+    padding: 9px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+
+}
+#addForm {
+  display: none;
+}
+#addForm:target {
+  display: table;
+}*/
+input[type=submit] {
+    /*padding: .6vh; 
+    border-radius: 1vh;*/
+    background: #F9D781;
+    color: #000;
+    font-weight: bold;  
+}
